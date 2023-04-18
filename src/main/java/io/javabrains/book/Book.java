@@ -9,6 +9,7 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table(value="book_by_id")
@@ -40,6 +41,13 @@ public class Book {
     private List<String> authorIds;
 
     public Book() {
+    }
+    public List<String> convertCoverIds(List<Integer> coverids){
+        List<String>converter = new ArrayList<>();
+        for(int coverid: coverids){
+            converter.add(String.valueOf(coverid));
+        }
+        return converter;
     }
 
     public String getId() {
