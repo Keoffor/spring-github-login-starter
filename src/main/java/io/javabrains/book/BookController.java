@@ -32,6 +32,8 @@ public class BookController {
         if(getbook.getCoverIds() != null && getbook.getCoverIds().size()>0){
            coverImageUrl = COVER_IMAGE_ROOT + getbook.getCoverIds().get(0) + "-L.jpg";
         }
+        getbook.getAuthorIds().forEach(auth -> model.addAttribute("auth", auth));
+        getbook.getAuthorNames().forEach(auth -> model.addAttribute("authName", auth));
         model.addAttribute("book", getbook);
         model.addAttribute("coverImage", coverImageUrl);
         if(principal!=null && principal.getAttribute("login")!=null){

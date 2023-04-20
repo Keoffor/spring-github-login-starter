@@ -43,12 +43,12 @@
                         <img th:src="${coverImage}"
                              class="img-fluid rounded-start" alt="...">
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8" th:each="boo: ${book}">
                         <div class="card-body">
-                            <h5 class="card-title display-2" th:text="${book.name}">Name</h5>
-                            <p class="card-text display-6" th:text="${book.authorNames}">Author name</p>
-                            <p class="card-text" th:text="${book.description}">Book description</p>
-                            <p class="card-text">Published Date: <small class="text-muted" th:text="${book.publishedDate}">2020-01-01</small></p>
+                            <h5 class="card-title display-2" th:text="${boo.name}">Name</h5>
+                            <a th:href="@{'/authors/' + ${auth}}" class="card-title"  th:text="${authName}">Author name</a>
+                            <p class="card-text" th:text="${boo.description}">Book description</p>
+                            <p class="card-text" th:text="${boo.publishedDate}">Published Date</p>
                             <div th:unless="${loginId}" class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                                 <span class="card-text"> Sigin to track this book
                                 <a type="button" href="/oauth2/authorization/github" class="btn btn-primary btn-sm px-4 gap-3">Login via GitHub</a>
@@ -60,7 +60,7 @@
                                        th:value="${_csrf.token}"/>
                                 <input type="hidden"
                                        name="bookId"
-                                       th:value="${book.id}" />
+                                       th:value="${boo.id}" />
 
                                 <div class="mb-3">
                                     <label for="startedDate" class="form-label">Start date</label>
