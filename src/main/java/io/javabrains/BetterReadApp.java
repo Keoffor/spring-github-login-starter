@@ -1,5 +1,7 @@
 package io.javabrains;
 
+import io.javabrains.author.AuthorBooks;
+import io.javabrains.book.Book;
 import io.javabrains.connection.DataStaxAstraProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,5 +1,7 @@
 package io.javabrains.author;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ public class AuthorController {
     @Autowired
     AuthorBooksRepository authorBooksRepository;
     private final String COVER_IMAGE_ROOT = "http://covers.openlibrary.org/b/id/";
+    Logger logger = LoggerFactory.getLogger(AuthorController.class);
 
     @GetMapping(value = "/authors/{authorid}")
     public String getBooksByAuthor(@PathVariable String authorid, Model model ){
@@ -27,11 +30,11 @@ public class AuthorController {
            String coverImageUrl = "/images/no-image.png";
            if(auth.getCoverIds()!=null & auth.getCoverIds().size() > 0){
                coverImageUrl = COVER_IMAGE_ROOT + auth.getCoverIds().get(0)+ "-L.jpg";
+               logger.info("This is printing {} ", auth.getPublishedDate());
            }
            auth.setCoverUrl(coverImageUrl);
            return auth;
        }).collect(Collectors.toList());
-
        model.addAttribute("auths", authorBooks);
         return "authorbooks";
     }

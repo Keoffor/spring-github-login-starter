@@ -31,23 +31,19 @@
 
 
     <h1>Author Books</h1>
-    <div class="card mb-3" style="max-width: 540px;" th:each="auth: ${auths}">
-      <div class="card mb-3">
+    <div class="card" style="max-width: 650px;" th:each="auth: ${auths}">
         <div class="row g-0">
           <div class="col-md-4">
             <img th:src="${auth.coverUrl}" class="img-fluid rounded-start">
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <a th:href="@{'/books/' + ${auth.bookId}}"  class="card-text" th:text="${auth.name}">Book Name</a>
-              <p class="card-text" th:text="${auth.authorNames}">Author name</p>
-              <p class="card-text" th:text="${auth.description}">Description</p>
-              <p class="card-text" th:text="${auth.publishedDate}">Published Date</p>
-
-
+              <p class="card-text">Title: <a th:href="@{'/books/' + ${auth.bookId}}"  class="card-text" th:text="${auth.name}">Book Name</a></p>
+                <p class="card-text">Authors: <small th:text="${auth.authorNames}">Author name<</small></p>
+                <p class="card-text" th:text="${auth.description}">Description</p>
+                <p class="card-text">Published Date: <small class="text-muted" th:text="${auth.publishedDate}">2020-01-01</small></p>
             </div>
           </div>
-        </div>
       </div>
 
     </div>

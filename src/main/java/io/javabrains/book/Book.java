@@ -24,7 +24,7 @@ public class Book {
     @CassandraType(type= CassandraType.Name.TEXT)
     private String description;
 
-    @Column("publishedDate")
+    @Column("published_date")
     @CassandraType(type= CassandraType.Name.DATE)
     private LocalDate publishedDate;
 
@@ -39,6 +39,7 @@ public class Book {
     @Column("author_id")
     @CassandraType(type= CassandraType.Name.LIST, typeArguments = CassandraType.Name.TEXT)
     private List<String> authorIds;
+
 
     public Book() {
     }
